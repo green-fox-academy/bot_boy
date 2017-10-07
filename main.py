@@ -11,12 +11,14 @@ slack_client = SlackClient(TOKEN)
 def handle_command(command, channel):
     {
         "help": help_message
-    }[command.split(" ")[0]](channel)
+    }[get_feature(command)](command, channel)
 
 
-def help_message(channel):
-    send_response("This is a help message", channel)
+def help_message(command, channel):
+    send_response("This is a help message for the feature " + command.split(" ")[1], channel)
 
+def get_feature(command):
+    return command.split(" ")[0]
 
 def send_response(response, channel):
     slack_client.api_call("chat.postMessage", channel=channel,
