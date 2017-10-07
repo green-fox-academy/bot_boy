@@ -7,11 +7,21 @@ from slackclient import SlackClient
 slack_client = SlackClient(TOKEN)
 
 
-def handle_command(command, channel):
-    {
+def feature_switcher(feature):
+    return {
         "help": help_message,
         "hello": hello_world
-    }[get_feature(command)](command, channel)
+    }[feature]
+
+
+def handle_command(command, channel):
+    try:
+        feature_switcher(get_feature(command))(command, channel)
+    except KeyError:
+        send_response("Not supported command", channel)
+    except:
+        send_response("Something went wrong :(", channel)
+        raise
 
 
 def help_message(command, channel):
