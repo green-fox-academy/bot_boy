@@ -4,21 +4,28 @@ from config import TOKEN, BOT_ID, AT_BOT
 from slackclient import SlackClient
 
 
-
 slack_client = SlackClient(TOKEN)
 
 
 def handle_command(command, channel):
     {
-        "help": help_message
+        "help": help_message,
+        "hello": hello_world
     }[get_feature(command)](command, channel)
 
 
 def help_message(command, channel):
-    send_response("This is a help message for the feature " + command.split(" ")[1], channel)
+    send_response("This is a help message for the feature " +
+                  command.split(" ")[1], channel)
+
+
+def hello_world(command, channel):
+    send_response("Helloooouuu", channel)
+
 
 def get_feature(command):
     return command.split(" ")[0]
+
 
 def send_response(response, channel):
     slack_client.api_call("chat.postMessage", channel=channel,
