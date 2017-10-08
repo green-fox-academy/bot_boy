@@ -15,7 +15,7 @@ def list_printer(header, list_to_response, channel):
     client_service.send_response(response, channel)
     
 
-def log_printer(text, channel):
+def echo(text, channel):
     client_service.send_response(text, channel)
 
 
