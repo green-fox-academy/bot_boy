@@ -9,7 +9,8 @@ def help_service(command, channel):
 
 feature_switcher = {
         "help": help_service,
-        "hello": responder.hello_world
+        "hello": responder.hello_world,
+        "whoareyou": responder.whoami
     }
 
  
