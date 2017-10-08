@@ -15,8 +15,8 @@ def list_printer(header, list_to_response, channel):
     client_service.send_response(response, channel)
     
 
-def hello_world(command, channel):
-    client_service.send_response("Helloooouuu", channel)
+def log_printer(text, channel):
+    client_service.send_response(text, channel)
 
 
 def hidden_error_handling(e, channel):

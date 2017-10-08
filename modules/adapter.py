@@ -1,4 +1,6 @@
 from modules import responder 
+from modules import adapter
+from modules import stack
 
 def help_service(command, channel):
     if command == get_feature(command):
@@ -11,6 +13,7 @@ feature_switcher = {
         "help": help_service,
         "hello": responder.hello_world,
         "whoareyou": responder.whoami
+        ":stack_overflow:": 
     }
 
  
