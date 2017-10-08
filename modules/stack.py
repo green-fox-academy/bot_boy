@@ -17,8 +17,15 @@ def search(command, channel):
 
 def answer_search(questions):
     if not len(questions) == 0:
-        return len(questions)
+        question_id = questions[0]['question_id']
+        answers =  SITE.fetch("questions/" + str(question_id) + "/answers",  sort='votes', order="desc")["items"]
+        return handle_answers(answers)
     return
+
+def handle_answers(answers):
+    if not len(answers) == 0:
+        return answers[0]['question_id']
+    return    
 
 
 
