@@ -1,15 +1,22 @@
 from modules import responder 
 
-def feature_switcher(feature):
-    return {
-        "help": responder.help_message,
-        "hello": responder.hello_world
-    }[feature]
+def help_service(command, channel):
+    if command == get_feature(command):
+        responder.list_printer("Hi! there are my features:\n", list(feature_switcher.keys()), channel)
+    else:
+        responder.help_message(command, channel)   
 
+
+feature_switcher = {
+        "help": help_service,
+        "hello": responder.hello_world
+    }
+
+ 
 
 def handle_command(command, channel):
     try:
-        feature_switcher(get_feature(command))(command, channel)
+        feature_switcher[get_feature(command)](command, channel)
     except KeyError:
         responder.not_supported_command(channel)
     except Exception as e:
