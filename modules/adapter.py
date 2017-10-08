@@ -1,19 +1,20 @@
-from modules import responder 
+from modules import responder
+
 
 def help_service(command, channel):
     if command == get_feature(command):
-        responder.list_printer("Hi! there are my features:\n", list(feature_switcher.keys()), channel)
+        responder.list_printer("Hi! there are my features:\n", list(
+            feature_switcher.keys()), channel)
     else:
-        responder.help_message(command, channel)   
+        responder.help_message(command, channel)
 
 
 feature_switcher = {
-        "help": help_service,
-        "hello": responder.hello_world,
-        "whoareyou": responder.whoami
-    }
+    "help": help_service,
+    "hello": responder.hello_world,
+    "whoareyou": responder.whoami
+}
 
- 
 
 def handle_command(command, channel):
     try:
@@ -23,6 +24,6 @@ def handle_command(command, channel):
     except Exception as e:
         responder.hidden_error_handling(e, channel)
 
+
 def get_feature(command):
     return command.split(" ")[0]
-

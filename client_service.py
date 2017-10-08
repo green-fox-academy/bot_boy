@@ -3,6 +3,7 @@ from config import TOKEN, BOT_ID, AT_BOT
 from modules import adapter
 import time
 
+
 def start():
     slack_client = get_client()
     READ_WEBSOCKET_DELAY = 1
@@ -25,6 +26,7 @@ def send_response(response, channel):
 def get_client():
     return SlackClient(TOKEN)
 
+
 def parse_slack_output(slack_rtm_output):
     output_list = slack_rtm_output
     if output_list and len(output_list) > 0:
@@ -34,4 +36,3 @@ def parse_slack_output(slack_rtm_output):
                 return output['text'].split(AT_BOT)[1].strip().lower(), \
                     output['channel']
     return None, None
- 
